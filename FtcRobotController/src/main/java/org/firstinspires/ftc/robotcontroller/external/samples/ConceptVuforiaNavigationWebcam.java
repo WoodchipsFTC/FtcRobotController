@@ -129,6 +129,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */
+        //Charlie G: This starts up vuforia
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -167,6 +168,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
         vuforia.enableConvertFrameToBitmap();
 
         /** @see #captureFrameToFile() */
+        //Charlie G: This makes sure that there is a capture directory
         AppUtil.getInstance().ensureDirectoryExists(captureDirectory);
 
 
@@ -343,6 +345,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * plane) is then CCW, as one would normally expect from the usual classic 2D geometry.
          */
 
+        //Charlie G: This tells vuforia how the camera's position relates to the robot
         OpenGLMatrix robotFromCamera = OpenGLMatrix
                 .translation(mmBotWidth/2,0,0)
                 .multiplied(Orientation.getRotationMatrix(
@@ -355,6 +358,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * listener is a {@link VuforiaTrackableDefaultListener} and can so safely cast because
          * we have not ourselves installed a listener of a different type.
          */
+        //Charlie G: this tells the target listeners where the camera is
         ((VuforiaTrackableDefaultListener)redTarget.getListener()).setCameraLocationOnRobot(parameters.cameraName, robotFromCamera);
         ((VuforiaTrackableDefaultListener)blueTarget.getListener()).setCameraLocationOnRobot(parameters.cameraName, robotFromCamera);
 
@@ -389,6 +393,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
         while (opModeIsActive()) {
 
             if (gamepad1.a && !buttonPressed) {
+                //Charlie G: take a photo
                 captureFrameToFile();
                 }
             buttonPressed = gamepad1.a;
