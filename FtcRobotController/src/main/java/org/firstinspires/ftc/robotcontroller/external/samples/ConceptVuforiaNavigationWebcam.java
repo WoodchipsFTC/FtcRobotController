@@ -129,6 +129,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */
+
         //Charlie G: This starts up vuforia
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
@@ -259,6 +260,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * - Then we rotate it  90 around the field's Z access to face it away from the audience.
          * - Finally, we translate it back along the X axis towards the red audience wall.
          */
+
         OpenGLMatrix redTargetLocationOnField = OpenGLMatrix
                 /* Then we translate the target off to the RED WALL. Our translation here
                 is a negative translation in X.*/
@@ -358,6 +360,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
          * listener is a {@link VuforiaTrackableDefaultListener} and can so safely cast because
          * we have not ourselves installed a listener of a different type.
          */
+
         //Charlie G: this tells the target listeners where the camera is
         ((VuforiaTrackableDefaultListener)redTarget.getListener()).setCameraLocationOnRobot(parameters.cameraName, robotFromCamera);
         ((VuforiaTrackableDefaultListener)blueTarget.getListener()).setCameraLocationOnRobot(parameters.cameraName, robotFromCamera);
@@ -395,6 +398,7 @@ public class ConceptVuforiaNavigationWebcam extends LinearOpMode {
             if (gamepad1.a && !buttonPressed) {
                 //Charlie G: take a photo
                 captureFrameToFile();
+
                 }
             buttonPressed = gamepad1.a;
 
