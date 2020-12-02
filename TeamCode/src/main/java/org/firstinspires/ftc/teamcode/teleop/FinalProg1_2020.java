@@ -54,6 +54,9 @@ public class FinalProg1_2020 extends LinearOpMode {
      //declare a linear slide motor
      private DcMotor Slide_motor;
 
+     //declare a shooter spinner motor
+     private DcMotor Shooter_motor;
+
     @Override
     public void runOpMode() {
         
@@ -69,15 +72,22 @@ public class FinalProg1_2020 extends LinearOpMode {
        RB = hardwareMap.get(DcMotor.class, "Right Back");
        LF = hardwareMap.get(DcMotor.class, "Left Front");
        LB = hardwareMap.get(DcMotor.class, "Left Back");
-
+       //set the wheels to use encoders
        RF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
        RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
        LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
        LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
        int ArmLoc;
        int ArmStart;
        ArmStart = Slide_motor.getCurrentPosition();
+
+
+        //Hardwaremap the shooter motor
+        Shooter_motor = hardwareMap.get(DcMotor.class,"Shooter motor");
+        //set the shooter motor to use encoders
+        Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         telemetry.addData("Status", "Initialized");
  
@@ -88,8 +98,8 @@ public class FinalProg1_2020 extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         //declare a variable for the triggers
-        double Shooter_RPM;
-        Shooter_RPM = 0;
+        double Shooter_Power;
+        Shooter_Power = 0;
         
         
 
@@ -100,9 +110,12 @@ public class FinalProg1_2020 extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
 
-            Shooter_RPM += this.gamepad2.left_stick_y;
 
+            //Shooter power adjustment code
+            Shooter_Power += this.gamepad2.left_stick_y;
 
+            //this code moves the shooter motor
+            Shooter_motor.setPower(Shooter_Power);
             
 
             //set the Capstone Servo position
