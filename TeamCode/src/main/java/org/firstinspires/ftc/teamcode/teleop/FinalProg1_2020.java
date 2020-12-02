@@ -100,19 +100,11 @@ public class FinalProg1_2020 extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
 
-            
-            
-
-            
-            
-
+            Shooter_RPM += this.gamepad2.left_stick_y;
 
 
             
-            
-            
 
-            
             //set the Capstone Servo position
             if(this.gamepad2.x){
             Servo_Cap.setPosition(10);
@@ -131,7 +123,7 @@ public class FinalProg1_2020 extends LinearOpMode {
                 Slide_motor.setPower(-1);
             }
             */
-            //           Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
+                       Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
 
             //ArmLoc += (Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y));
             //ArmLoc += RT;
