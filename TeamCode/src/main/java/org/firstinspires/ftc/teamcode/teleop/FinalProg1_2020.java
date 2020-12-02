@@ -74,11 +74,11 @@ public class FinalProg1_2020 extends LinearOpMode {
        RB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
        LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
        LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-       
+
        int ArmLoc;
        int ArmStart;
        ArmStart = Slide_motor.getCurrentPosition();
-       
+
         telemetry.addData("Status", "Initialized");
  
         
@@ -88,112 +88,30 @@ public class FinalProg1_2020 extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         //declare a variable for the triggers
-        double LT;
-        double RT;
+        double Shooter_RPM;
+        Shooter_RPM = 0;
         
         
-        //set a default
+
+
+
         
-        LT = 0;
-        RT = 0;
-        
-        //create a servo maximum
-        double ServoMax;
-        
-        //create a default for this too
-        ServoMax = 0.7;
-        
-        //create a servo side offset
-        double ServoOffset;
-        
-        //set a default
-        ServoOffset = 0;
-        
-        //create an arm locking variable
-        Boolean ArmLocked;
-        
-        //set a defualt
-        
-        ArmLocked = false;
-        
+
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
-            telemetry.addData("Servo R", Servo_R.getPosition());
-            telemetry.addData("Servo L", Servo_L.getPosition());
+
             
             
-            // TODO test if locked
-            if (this.gamepad2.start){
-                ArmLocked = true;
-                
-            }
-            else if (this.gamepad2.left_bumper || this.gamepad2.right_bumper) {
-                ArmLocked = false;
-                
-            }
-            telemetry.addData("armLocked", ArmLocked);
+
             
             
-            //set LT and RT to the Left and right triggers
-            
-            if (ArmLocked == false) {
-             LT = this.gamepad2.left_trigger*1;
-             RT = this.gamepad2.right_trigger*1;
-            }
-            else {
-                RT = 1;
-                LT = 1;
-            }
-            
-            //change the servo max
-            
-            if (this.gamepad2.y && ArmLocked == false) {
-                ServoMax = 0.6;
-            }
-            else if (this.gamepad2.x && ArmLocked == false) {
-                ServoMax = 0.5;
-            }
-            else if (ArmLocked == false) {
-                ServoMax = 0.7;
-            }
-            
-            
-            //change the servo side offsets
-            
-            
-            if (ServoMax < 0.7) {
-                ServoOffset = this.gamepad2.left_stick_x/5;
-            }
-            
-            else if (ArmLocked == false) {
-                ServoOffset = 0;
-            }
-            
-            
-            if (LT > ServoMax + ServoOffset) {
-                
-                LT = ServoMax + ServoOffset;
-            }
-            
-            if (RT > ServoMax - ServoOffset) {
-                RT = ServoMax - ServoOffset;
-            }
-            
-            /*
-            if (RT > 0.9) {
-                RT = 0.9;
-            }
-            if (LT > 0.1) {
-                LT = 0.1;
-            }
-            */
-            //overide if locked
+
+
+
             
             
             
-            //set the servo positions
-            Servo_L.setPosition((LT*2));
-            Servo_R.setPosition((1 - RT*2));
+
             
             //set the Capstone Servo position
             if(this.gamepad2.x){
@@ -213,15 +131,14 @@ public class FinalProg1_2020 extends LinearOpMode {
                 Slide_motor.setPower(-1);
             }
             */
-                        Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
+            //           Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
 
             //ArmLoc += (Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y));
             //ArmLoc += RT;
-            
+
             
             //driving code goes here
-            //you need to do the driving code JEFFRY
-            //I'm doing it ALLAN
+
             double speedModifier = (1- ((this.gamepad1.right_trigger + this.gamepad1.left_trigger)/1.5));
             double gamepad1LX = this.gamepad1.left_stick_x * speedModifier;
             double gamepad1LY = this.gamepad1.left_stick_y * speedModifier;
