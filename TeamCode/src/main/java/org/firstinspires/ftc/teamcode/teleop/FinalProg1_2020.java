@@ -40,8 +40,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 
 public class FinalProg1_2020 extends LinearOpMode {
-     private Servo Servo_L;
-     private Servo Servo_R;
+
      
      //create the capstone dropping servo
      private Servo Servo_Cap;
@@ -59,12 +58,13 @@ public class FinalProg1_2020 extends LinearOpMode {
 
      //Declare the collector wheel motor(the M stands for motor)
      private DcMotor CollectorM;
+
+     //Declare the unknown Servo
+     private Servo Unknown_Servo;
     @Override
     public void runOpMode() {
         
         //map the motors
-       Servo_L = hardwareMap.get(Servo.class, "Left Grabber");
-       Servo_R = hardwareMap.get(Servo.class, "Right Grabber");
        Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
        //RF_motor = hardwareMap.get(DcMotor.class, "Right Front");
        Slide_motor = hardwareMap.get(DcMotor.class, "Slide Motor");
@@ -93,6 +93,9 @@ public class FinalProg1_2020 extends LinearOpMode {
         Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
+        //Hardwaremap the unknown servo
+        Unknown_Servo = hardwareMap.get(Servo.class, "Unknown Servo");
+
         telemetry.addData("Status", "Initialized");
 
         //Hardwaremap CollectorM
@@ -117,6 +120,13 @@ public class FinalProg1_2020 extends LinearOpMode {
         } else {
             CollectorM.setPower(0);
         }
+
+        if(this.gamepad2.x) {
+            Unknown_Servo.setPosition(45);
+        } else if(this.gamepad2.b) {
+            Unknown_Servo.setPosition(0);
+        }
+
 
 
 
