@@ -57,6 +57,8 @@ public class FinalProg1_2020 extends LinearOpMode {
      //declare a shooter spinner motor
      private DcMotor Shooter_motor;
 
+     //Declare the collector wheel motor(the M stands for motor)
+     private DcMotor CollectorM;
     @Override
     public void runOpMode() {
         
@@ -79,6 +81,7 @@ public class FinalProg1_2020 extends LinearOpMode {
        LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
+
        int ArmLoc;
        int ArmStart;
        ArmStart = Slide_motor.getCurrentPosition();
@@ -89,9 +92,14 @@ public class FinalProg1_2020 extends LinearOpMode {
         //set the shooter motor to use encoders
         Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
         telemetry.addData("Status", "Initialized");
- 
-        
+
+        //Hardwaremap CollectorM
+        CollectorM = hardwareMap.get(DcMotor.class,"CollectorM");
+        //set CollectorM to use encoders
+        CollectorM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -100,8 +108,15 @@ public class FinalProg1_2020 extends LinearOpMode {
         //declare a variable for the triggers
         double Shooter_Power;
         Shooter_Power = 0;
-        
-        
+
+        //Control of collectorM
+        if(this.gamepad2.y) {
+            CollectorM.setPower(1);
+        } else if(this.gamepad2.a) {
+            CollectorM.setPower(-1);
+        } else {
+            CollectorM.setPower(0);
+        }
 
 
 
@@ -116,7 +131,8 @@ public class FinalProg1_2020 extends LinearOpMode {
 
             //this code moves the shooter motor
             Shooter_motor.setPower(Shooter_Power);
-            
+            //Show the shooter power to the user
+            telemetry.addData("Shooter motor power", Shooter_Power);
 
             //set the Capstone Servo position
             if(this.gamepad2.x){
@@ -124,7 +140,9 @@ public class FinalProg1_2020 extends LinearOpMode {
             } else if(this.gamepad2.b) {
                 Servo_Cap.setPosition(0);
             }
-            
+
+
+
            //move the motors
             //RF_motor.setPower(this.gamepad1.right_stick_y);
            /*
