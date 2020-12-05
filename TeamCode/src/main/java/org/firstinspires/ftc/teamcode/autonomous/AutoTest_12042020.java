@@ -127,68 +127,12 @@ public class AutoTest_12042020 extends LinearOpMode {
             Unknown_Servo.setPosition(0);
         }
 
+        setdirectionalpower(0.0, 0.0, 0.0, LF, RF, RB, LB);
 
 
 
 
 
-        while (opModeIsActive()) {
-            telemetry.addData("Status", "Running");
-
-
-            //Shooter power adjustment code
-            Shooter_Power += this.gamepad2.left_stick_y;
-
-            //this code moves the shooter motor
-            Shooter_motor.setPower(Shooter_Power);
-            //Show the shooter power to the user
-            telemetry.addData("Shooter motor power", Shooter_Power);
-
-            //set the Capstone Servo position
-            if(this.gamepad2.x){
-                Servo_Cap.setPosition(10);
-            } else if(this.gamepad2.b) {
-                Servo_Cap.setPosition(0);
-            }
-
-
-
-            //move the motors
-            //RF_motor.setPower(this.gamepad1.right_stick_y);
-           /*
-            ArmLoc = Slide_motor.getCurrentPosition();
-            telemetry.addData("ArmLoc", ArmLoc);
-            if (ArmLoc >= ArmStart) {
-            Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
-            } else {
-                Slide_motor.setPower(-1);
-            }
-            */
-            Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
-
-            //ArmLoc += (Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y));
-            //ArmLoc += RT;
-
-
-            //driving code goes here
-
-            double speedModifier = (1- ((this.gamepad1.right_trigger + this.gamepad1.left_trigger)/1.5));
-            double gamepad1LX = this.gamepad1.left_stick_x * speedModifier;
-            double gamepad1LY = this.gamepad1.left_stick_y * speedModifier;
-            double gamepad1RX = this.gamepad1.right_stick_x * speedModifier;
-
-
-            LF.setPower((-(gamepad1LX + -gamepad1LY)) + -gamepad1RX);
-            RF.setPower((-gamepad1LY - gamepad1LX) + -gamepad1RX);
-            RB.setPower(((gamepad1LX + -gamepad1LY)) + -gamepad1RX);
-            LB.setPower((-(-gamepad1LY - gamepad1LX)) + -gamepad1RX);
-
-
-
-
-            telemetry.update();
-
-        }
     }
 
     static void setdirectionalpower(double X_Movement, double Y_Movement, double Rotation, DcMotor LF, DcMotor RF, DcMotor RB, DcMotor LB) {
