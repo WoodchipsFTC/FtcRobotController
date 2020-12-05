@@ -190,4 +190,11 @@ public class AutoTest_12042020 extends LinearOpMode {
 
         }
     }
+
+    static void setdirectionalpower(double X_Movement, double Y_Movement, double Rotation, DcMotor LF, DcMotor RF, DcMotor RB, DcMotor LB) {
+        LF.setPower((-(X_Movement + -Y_Movement)) + -Rotation);
+        RF.setPower((-Y_Movement - X_Movement) + -Rotation);
+        RB.setPower(((X_Movement + -Y_Movement)) + -Rotation);
+        LB.setPower((-(-Y_Movement - X_Movement)) + -Rotation);
+    }
 }
