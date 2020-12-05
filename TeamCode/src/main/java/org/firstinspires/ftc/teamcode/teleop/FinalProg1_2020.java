@@ -43,7 +43,7 @@ public class FinalProg1_2020 extends LinearOpMode {
 
      
      //create the capstone dropping servo
-     private Servo Servo_Cap;
+     //private Servo Servo_Cap;
      //define the motors
      private DcMotor RF;
      private DcMotor RB;
@@ -65,7 +65,7 @@ public class FinalProg1_2020 extends LinearOpMode {
     public void runOpMode() {
         
         //map the motors
-       Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
+       //Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
        //RF_motor = hardwareMap.get(DcMotor.class, "Right Front");
        Slide_motor = hardwareMap.get(DcMotor.class, "Slide Motor");
        
@@ -103,29 +103,20 @@ public class FinalProg1_2020 extends LinearOpMode {
         //set CollectorM to use encoders
         CollectorM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
+        //declare a variable for the triggers
+        double Shooter_Power;
+        Shooter_Power = 0;
+
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        //declare a variable for the triggers
-        double Shooter_Power;
-        Shooter_Power = 0;
+
 
         //Control of collectorM
-        if(this.gamepad2.y) {
-            CollectorM.setPower(1);
-        } else if(this.gamepad2.a) {
-            CollectorM.setPower(-1);
-        } else {
-            CollectorM.setPower(0);
-        }
 
-        if(this.gamepad2.x) {
-            Unknown_Servo.setPosition(45);
-        } else if(this.gamepad2.b) {
-            Unknown_Servo.setPosition(0);
-        }
 
 
 
@@ -134,6 +125,21 @@ public class FinalProg1_2020 extends LinearOpMode {
 
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
+
+            if(this.gamepad2.y) {
+                CollectorM.setPower(1);
+            } else if(this.gamepad2.a) {
+                CollectorM.setPower(-1);
+            } else {
+                CollectorM.setPower(0);
+            }
+
+            if(this.gamepad2.x) {
+                Unknown_Servo.setPosition(45);
+            } else if(this.gamepad2.b) {
+                Unknown_Servo.setPosition(0);
+            }
+
 
 
             //Shooter power adjustment code
@@ -144,12 +150,16 @@ public class FinalProg1_2020 extends LinearOpMode {
             //Show the shooter power to the user
             telemetry.addData("Shooter motor power", Shooter_Power);
 
+
+            /*
             //set the Capstone Servo position
             if(this.gamepad2.x){
             Servo_Cap.setPosition(10);
             } else if(this.gamepad2.b) {
                 Servo_Cap.setPosition(0);
             }
+            */
+
 
 
 
