@@ -135,7 +135,7 @@ public class FinalProg1_2020 extends LinearOpMode {
             }
 
             if(this.gamepad2.x) {
-                Unknown_Servo.setPosition(45);
+                Unknown_Servo.setPosition(-45);
             } else if(this.gamepad2.b) {
                 Unknown_Servo.setPosition(0);
             }
