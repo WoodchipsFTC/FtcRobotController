@@ -59,8 +59,15 @@ public class FinalProg1_2020 extends LinearOpMode {
      //Declare the collector wheel motor(the M stands for motor)
      private DcMotor CollectorM;
 
-     //Declare the unknown Servo
-     private Servo Unknown_Servo;
+     //Declare the Arm Servo
+     private Servo Arm_Servo;
+
+     //Declare the Gripper Servo
+     private Servo Grip_Servo;
+
+    //Declare the push servo
+    private Servo Push_Servo;
+
     @Override
     public void runOpMode() {
         
@@ -93,8 +100,10 @@ public class FinalProg1_2020 extends LinearOpMode {
         Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-        //Hardwaremap the unknown servo
-        Unknown_Servo = hardwareMap.get(Servo.class, "Unknown Servo");
+        //Hardwaremap the servos
+        Arm_Servo = hardwareMap.get(Servo.class, "Arm Servo");
+        Grip_Servo = hardwareMap.get(Servo.class, "Grip Servo");
+        Push_Servo = hardwareMap.get(Servo.class, "Push Servo");
 
         telemetry.addData("Status", "Initialized");
 
@@ -133,14 +142,6 @@ public class FinalProg1_2020 extends LinearOpMode {
             } else {
                 CollectorM.setPower(0);
             }
-
-            if(this.gamepad2.x) {
-                Unknown_Servo.setPosition(-45);
-            } else if(this.gamepad2.b) {
-                Unknown_Servo.setPosition(0);
-            }
-
-
 
             //Shooter power adjustment code
             Shooter_Power += this.gamepad2.left_stick_y;
