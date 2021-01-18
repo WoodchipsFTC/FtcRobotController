@@ -122,14 +122,6 @@ public class FinalProg1_2020 extends LinearOpMode {
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-
-
-        //Control of collectorM
-
-
-
-
-
         
 
         while (opModeIsActive()) {
@@ -172,7 +164,7 @@ public class FinalProg1_2020 extends LinearOpMode {
                 Slide_motor.setPower(-1);
             }
             */
-                       Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
+            Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
 
             //ArmLoc += (Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y));
             //ArmLoc += RT;
