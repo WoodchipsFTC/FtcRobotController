@@ -122,7 +122,7 @@ public class FinalProg1_2020 extends LinearOpMode {
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
-        
+
 
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
