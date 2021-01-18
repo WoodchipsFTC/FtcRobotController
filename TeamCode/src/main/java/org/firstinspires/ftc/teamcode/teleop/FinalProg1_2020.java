@@ -151,18 +151,15 @@ public class FinalProg1_2020 extends LinearOpMode {
             //Show the shooter power to the user
             telemetry.addData("Shooter motor power", Shooter_Power);
 
+            //set the Servo positions
+            Push_Servo.setPosition(this.gamepad1.left_stick_y * 45 + 45);
+            telemetry.addData("Push_Servo",this.gamepad1.left_stick_y * 45 + 45);
 
-            /*
-            //set the Capstone Servo position
-            if(this.gamepad2.x){
-            Servo_Cap.setPosition(10);
-            } else if(this.gamepad2.b) {
-                Servo_Cap.setPosition(0);
-            }
-            */
+            Arm_Servo.setPosition(this.gamepad1.right_stick_y * 45 + 45);
+            telemetry.addData("Arm_Servo",this.gamepad1.right_stick_y * 45 + 45);
 
-
-
+            Grip_Servo.setPosition(this.gamepad2.left_stick_y * 45 + 45);
+            telemetry.addData("Grip_Servo",this.gamepad2.left_stick_y * 45 + 45);
 
            //move the motors
             //RF_motor.setPower(this.gamepad1.right_stick_y);
