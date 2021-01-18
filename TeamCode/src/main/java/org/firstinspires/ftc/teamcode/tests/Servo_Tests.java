@@ -70,14 +70,14 @@ public class Servo_Tests extends LinearOpMode {
             telemetry.addData("Status", "Running");
 
             //set the Servo positions
-            Push_Servo.setPosition(this.gamepad1.left_stick_y * 90);
-            telemetry.addData("Push_Servo",this.gamepad1.left_stick_y * 90);
+            Push_Servo.setPosition(this.gamepad1.left_stick_y * 90 + 90);
+            telemetry.addData("Push_Servo",this.gamepad1.left_stick_y * 90 + 90);
 
-            Arm_Servo.setPosition(this.gamepad1.right_stick_y * 90);
-            telemetry.addData("Arm_Servo",this.gamepad1.right_stick_y * 90);
+            Arm_Servo.setPosition(this.gamepad1.right_stick_y * 90 + 90);
+            telemetry.addData("Arm_Servo",this.gamepad1.right_stick_y * 90 + 90);
 
-            Grip_Servo.setPosition(this.gamepad2.left_stick_y * 90);
-            telemetry.addData("Grip_Servo",this.gamepad2.left_stick_y * 90);
+            Grip_Servo.setPosition(this.gamepad2.left_stick_y * 90 + 90);
+            telemetry.addData("Grip_Servo",this.gamepad2.left_stick_y * 90 + 90);
 
             telemetry.update();
 
