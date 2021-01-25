@@ -43,7 +43,7 @@ public class AutoTest_12042020 extends LinearOpMode {
 
 
     //create the capstone dropping servo
-    private Servo Servo_Cap;
+    //private Servo Servo_Cap;
     //define the motors
     private DcMotor RF;
     private DcMotor RB;
@@ -59,13 +59,20 @@ public class AutoTest_12042020 extends LinearOpMode {
     //Declare the collector wheel motor(the M stands for motor)
     private DcMotor CollectorM;
 
-    //Declare the unknown Servo
-    private Servo Unknown_Servo;
+    //Declare the Arm Servo
+    private Servo Arm_Servo;
+
+    //Declare the Gripper Servo
+    private Servo Grip_Servo;
+
+    //Declare the push servo
+    private Servo Push_Servo;
+
     @Override
     public void runOpMode() {
 
         //map the motors
-        Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
+        //Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
         //RF_motor = hardwareMap.get(DcMotor.class, "Right Front");
         Slide_motor = hardwareMap.get(DcMotor.class, "Slide Motor");
 
@@ -80,8 +87,6 @@ public class AutoTest_12042020 extends LinearOpMode {
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-
-
         int ArmLoc;
         int ArmStart;
         ArmStart = Slide_motor.getCurrentPosition();
@@ -93,8 +98,10 @@ public class AutoTest_12042020 extends LinearOpMode {
         Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-        //Hardwaremap the unknown servo
-        Unknown_Servo = hardwareMap.get(Servo.class, "Unknown Servo");
+        //Hardwaremap the servos
+        Arm_Servo = hardwareMap.get(Servo.class, "Arm Servo");
+        Grip_Servo = hardwareMap.get(Servo.class, "Grip Servo");
+        Push_Servo = hardwareMap.get(Servo.class, "Push Servo");
 
         telemetry.addData("Status", "Initialized");
 
@@ -112,33 +119,16 @@ public class AutoTest_12042020 extends LinearOpMode {
         double Shooter_Power;
         Shooter_Power = 0;
 
-        //Control of collectorM
-        if(this.gamepad2.y) {
-            CollectorM.setPower(1);
-        } else if(this.gamepad2.a) {
-            CollectorM.setPower(-1);
-        } else {
-            CollectorM.setPower(0);
-        }
-
-        if(this.gamepad2.x) {
-            Unknown_Servo.setPosition(45);
-        } else if(this.gamepad2.b) {
-            Unknown_Servo.setPosition(0);
-        }
-
+        setdirectionalpower(0.0, 1.0, 0.0, LF, RF, RB, LB);
+        sleep(3000);
         setdirectionalpower(0.0, 0.0, 0.0, LF, RF, RB, LB);
-
-
-
-
 
     }
 
     static void setdirectionalpower(double X_Movement, double Y_Movement, double Rotation, DcMotor LF, DcMotor RF, DcMotor RB, DcMotor LB) {
-        LF.setPower((-(X_Movement + -Y_Movement)) + -Rotation);
+        LF.setPower((-(X_Movement - Y_Movement)) + -Rotation);
         RF.setPower((-Y_Movement - X_Movement) + -Rotation);
-        RB.setPower(((X_Movement + -Y_Movement)) + -Rotation);
+        RB.setPower(((X_Movement - Y_Movement)) + -Rotation);
         LB.setPower((-(-Y_Movement - X_Movement)) + -Rotation);
     }
 }
