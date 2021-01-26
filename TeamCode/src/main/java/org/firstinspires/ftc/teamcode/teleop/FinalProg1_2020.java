@@ -139,16 +139,18 @@ public class FinalProg1_2020 extends LinearOpMode {
             Shooter_Power += this.gamepad2.left_stick_y;
 
             //this code moves the shooter motor
-            Shooter_motor.setPower(Shooter_Power);
+            //Shooter_motor.setPower(Shooter_Power);
             //Show the shooter power to the user
             telemetry.addData("Shooter motor power", Shooter_Power);
 
             //set the Servo positions
+            /*
             Push_Servo.setPosition(this.gamepad1.left_stick_y * 45 + 45);
             telemetry.addData("Push_Servo",this.gamepad1.left_stick_y * 45 + 45);
+            */
 
-            Arm_Servo.setPosition(this.gamepad1.right_stick_y * 45 + 45);
-            telemetry.addData("Arm_Servo",this.gamepad1.right_stick_y * 45 + 45);
+            Arm_Servo.setPosition(this.gamepad2.right_stick_y * 45 + 45);
+            telemetry.addData("Arm_Servo",this.gamepad2.right_stick_y * 45 + 45);
 
             Grip_Servo.setPosition(this.gamepad2.left_stick_y * 45 + 45);
             telemetry.addData("Grip_Servo",this.gamepad2.left_stick_y * 45 + 45);
@@ -164,7 +166,7 @@ public class FinalProg1_2020 extends LinearOpMode {
                 Slide_motor.setPower(-1);
             }
             */
-            Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
+            //Slide_motor.setPower((Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y)));
 
             //ArmLoc += (Math.pow(this.gamepad2.right_stick_y, 2))* -(this.gamepad2.right_stick_y / Math.abs(this.gamepad2.right_stick_y));
             //ArmLoc += RT;

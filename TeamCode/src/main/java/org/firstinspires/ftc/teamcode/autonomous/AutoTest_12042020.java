@@ -120,7 +120,7 @@ public class AutoTest_12042020 extends LinearOpMode {
         Shooter_Power = 0;
 
         setdirectionalpower(0.0, 1.0, 0.0, LF, RF, RB, LB);
-        sleep(3000);
+        sleep(2570);
         setdirectionalpower(0.0, 0.0, 0.0, LF, RF, RB, LB);
 
     }
