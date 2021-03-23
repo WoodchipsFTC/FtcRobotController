@@ -87,28 +87,8 @@ public class AutoTest_12042020 extends LinearOpMode {
         LF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        int ArmLoc;
-        int ArmStart;
-        ArmStart = Slide_motor.getCurrentPosition();
-
-
-        //Hardwaremap the shooter motor
-        Shooter_motor = hardwareMap.get(DcMotor.class,"Shooter motor");
-        //set the shooter motor to use encoders
-        Shooter_motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
-        //Hardwaremap the servos
-        Arm_Servo = hardwareMap.get(Servo.class, "Arm Servo");
-        Grip_Servo = hardwareMap.get(Servo.class, "Grip Servo");
-        Push_Servo = hardwareMap.get(Servo.class, "Push Servo");
 
         telemetry.addData("Status", "Initialized");
-
-        //Hardwaremap CollectorM
-        CollectorM = hardwareMap.get(DcMotor.class,"CollectorM");
-        //set CollectorM to use encoders
-        CollectorM.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         telemetry.update();
         // Wait for the game to start (driver presses PLAY)
@@ -116,8 +96,6 @@ public class AutoTest_12042020 extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         //declare a variable for the triggers
-        double Shooter_Power;
-        Shooter_Power = 0;
 
         setdirectionalpower(0.0, 1.0, 0.0, LF, RF, RB, LB);
         sleep(2570);
