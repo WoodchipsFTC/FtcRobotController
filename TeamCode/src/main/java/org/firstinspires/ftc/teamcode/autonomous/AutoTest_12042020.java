@@ -50,31 +50,8 @@ public class AutoTest_12042020 extends LinearOpMode {
     private DcMotor LF;
     private DcMotor LB;
 
-    //declare a linear slide motor
-    private DcMotor Slide_motor;
-
-    //declare a shooter spinner motor
-    private DcMotor Shooter_motor;
-
-    //Declare the collector wheel motor(the M stands for motor)
-    private DcMotor CollectorM;
-
-    //Declare the Arm Servo
-    private Servo Arm_Servo;
-
-    //Declare the Gripper Servo
-    private Servo Grip_Servo;
-
-    //Declare the push servo
-    private Servo Push_Servo;
-
     @Override
     public void runOpMode() {
-
-        //map the motors
-        //Servo_Cap = hardwareMap.get(Servo.class, "Servo Cap");
-        //RF_motor = hardwareMap.get(DcMotor.class, "Right Front");
-        Slide_motor = hardwareMap.get(DcMotor.class, "Slide Motor");
 
         //define the wheels
         RF = hardwareMap.get(DcMotor.class, "Right Front");

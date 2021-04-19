@@ -62,9 +62,6 @@ public class FinalProg1_2021 extends LinearOpMode {
     //Declare the Grip Servo
     private Servo Grip_Servo;
 
-    //Declare the Flywheel Speed
-    private Double FlySpeed = 1.0;
-
     @Override
     public void runOpMode() {
         
@@ -123,18 +120,9 @@ public class FinalProg1_2021 extends LinearOpMode {
                 Arm_Motor.setPower(0);
             }
 
-            if (FlySpeed <= 1) {
-                FlySpeed += this.gamepad2.right_trigger / 100;
-            }
-
-            if (FlySpeed >= -1) {
-                FlySpeed -= this.gamepad2.left_trigger / 100;
-            }
-
-            telemetry.addData("Flywheel Speed", FlySpeed);
 
             //Shooter power adjustment code
-            Flywheel_Motor.setPower(gamepad2.right_stick_x * FlySpeed);
+            Flywheel_Motor.setPower(gamepad2.right_stick_x);
 
 
             //set the Servo position
